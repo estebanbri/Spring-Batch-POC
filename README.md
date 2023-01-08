@@ -24,8 +24,8 @@ Un ***Step*** (***StepExecution***) consiste de 3 partes :
 ![alt text](https://github.com/estebanbri/Spring-Batch-POC/blob/master/result-job-output.png)
 
 ### Para hacer el trigger de la carga de los datos csv a la db, hacer un request a:
-> http://localhost:8081/load - Trigger point for Spring Batch
-> http://localhost:8081/h2-console - H2 Console for querying the in-memory tables.
+> - http://localhost:8081/load - Trigger point for Spring Batch
+> - http://localhost:8081/h2-console - H2 Console for querying the in-memory tables.
 
 ### Nota: 
 Al agregar "spring-boot-devtools" spring nos autoconfigurará y proveerá un endpoint "/h2-console"
