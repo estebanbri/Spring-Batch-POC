@@ -15,13 +15,13 @@ Un ***Step*** (***StepExecution***) consiste de 3 partes :
 2. Un ItemProcessor (Opcional): procesar la data (Mapping dto to entity and transform dept_id to dept_name)
 3. Un ItemWriter: escribirla a otro source (Ej: Database)
 
-![alt text](http://url/to/img.png)
+![alt text](https://github.com/estebanbri/Spring-Batch-POC/blob/master/workflow.png)
 
 ### Tablas de JobRepository:
-![alt text](http://url/to/img.png)
+![alt text](https://github.com/estebanbri/Spring-Batch-POC/blob/master/result-job-repository.png)
 
 ### Tabla de users escritas por writer:
-![alt text](http://url/to/img.png)
+![alt text](https://github.com/estebanbri/Spring-Batch-POC/blob/master/result-job-output.png)
 
 ### Para hacer el trigger de la carga de los datos csv a la db, hacer un request a:
 > http://localhost:8081/load - Trigger point for Spring Batch
