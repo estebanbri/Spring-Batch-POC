@@ -20,7 +20,7 @@ Un ***Step*** (***StepExecution***) consiste de 3 partes :
 ### Tablas de JobRepository:
 ![alt text](https://github.com/estebanbri/Spring-Batch-POC/blob/master/result-job-repository.png)
 
-### Tabla de users escritas por writer:
+### Tabla GURU_USER escritas por writer:
 ![alt text](https://github.com/estebanbri/Spring-Batch-POC/blob/master/result-job-output.png)
 
 ### Para hacer el trigger de la carga de los datos csv a la db, hacer un request a:
