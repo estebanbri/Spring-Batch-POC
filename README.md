@@ -28,5 +28,6 @@ Un ***Step*** (***StepExecution***) consiste de 3 partes :
 > - http://localhost:8081/h2-console - H2 Console for querying the in-memory tables.
 
 ### Nota: 
-Al agregar "spring-boot-devtools" spring nos autoconfigurará y proveerá un endpoint "/h2-console"
+- Al agregar "spring-boot-devtools" spring nos autoconfigurará y proveerá un endpoint "/h2-console"
 para acceder al a base de datos en memoria h2
+- Si necesitas aplicar alguna logica segun un estado del current job que se esta ejecutando, es decir por ejemplo, necesitas avisar por email a X persona cuando finaliza de procesar el Job, o necesitas avisar por email cuando ocurrio un error en el procesamiento de dicho Job, esto se hace extendiendo la clase JobExecutionListenerSupport.class y sobreescribiendo el metodo afterJob(JobExecution jobExecution) y dentro validas segun el jobExecution.getStatus(). Y se lo agregas al metodo listener() del JobBuilderFactory. 
