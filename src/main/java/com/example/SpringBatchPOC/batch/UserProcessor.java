@@ -6,6 +6,7 @@ import org.springframework.batch.item.ItemProcessor;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Component;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -23,9 +24,11 @@ public class UserProcessor implements ItemProcessor<UserDTO, User> {
 
     @Override
     public User process(UserDTO userDTO) throws Exception {
+        // if(userDTO.getName().equals("Esteban")) return null; // Tambien se puede hacer logica de filtrado retornando null no se almacena en db
         User user = new User();
         BeanUtils.copyProperties(userDTO, user);
         user.setDept(DEPT_NAMES.get(user.getDept())); // Transformamos los codigos del csv al nombre de dept
+        user.setCreatedDate(new Date());
         return user;
     }
 
