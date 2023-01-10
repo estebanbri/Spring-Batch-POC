@@ -55,6 +55,9 @@ public class SpringBatchConfig {
                 .reader(reader)
                 .processor(processor)
                 .writer(writer)
+               .faultTolerant() // Hacemos que cada task de dicho step sea tolerante a fallos
+               .skipLimit(100) // Cantidad de Skipped records permitidos antes de marcar el Step completo como  Failed.
+               .skip(RuntimeException.class)
                 //.taskExecutor(new SimpleAsyncTaskExecutor()) // El reader, processor y writer se van a ejecutar async, es decir sin esto tarda 9seg y con esto tarda 3seg
                 .build();
     }

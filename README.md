@@ -41,3 +41,14 @@ para acceder al a base de datos en memoria h2
 - Si queremos que nuestro Job se ejecute de manera asincrona, caso real que aplica cuando desde tu job llamas a un 
 endpoint con RestTemplate cada llamada es bloqueante por ende no queres bloquear la ejecucion del Job con estas llamadas.
 Esto se hace configurando el JobLauncher, setTaskExecutor(new SimpleTaskExecutor()) o admite un executor customizado tmb.
+- Fault Tolerance Using Skip Policy: Esto es util configurarlo porque por defecto si no ocurre un error de mapping
+ejemplo en el csv viene un valor string (invalid/corrupted data) como campo de edad del User, 
+esto por defecto rompe toda la transaccion del job y hace un rollback de lo que escribio el writer. 
+Configurar la tolerancia a fallos nos permite especificar si ocurre un error en algun registro al momento de leer/process/write
+no corte toda la trx del job y haga un skip de dichos registros con data corrupted. Se hace especificando la excepcion 
+en el metodos skip() del StepBuilderFactory. Existe una interface SkipListener que te permite obtener metadata del origen
+del fallo, es decir donde surgio en fallo, en el read?, en el process? o en el write?. https://www.youtube.com/watch?v=deifDn6FWO0
+y loggear el row que causó el problema en consola asi despues lo buscas en el archivo csv y lo corregis a mano.
+Para insertar los registros corregidos que fueron skipped previamente, no te queda otra que volver a correr el job
+con el archivo csv corregido pero Spring Batch es suficientemente inteligente para no volver a insertar las rows que
+no tuvieron problemas, solo va a disparar inserts de los que rows que fueron corregidos unicamente.
